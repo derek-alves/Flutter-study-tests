@@ -1,8 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tests/pages/my_home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runZonedGuarded(() {
+    FlutterError.onError = (FlutterErrorDetails details) {
+      FlutterError.presentError(details);
+    };
+    runApp(MyApp());
+  }, (Object error, StackTrace stack) {});
 }
 
 class MyApp extends StatelessWidget {
